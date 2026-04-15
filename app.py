@@ -55,12 +55,12 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    file = request.files['image']   # 👈 get uploaded file
+    file = request.files['image']   
     
 
     if file:
         img=Image.open(file).convert('RGB')
-        img=transform(img)     # 👈 open image with Pillow
+        img=transform(img)     
         
         img = img.unsqueeze(0)
 
@@ -70,7 +70,6 @@ def predict():
 
             result=le.inverse_transform([output])    
 
-        # Dummy prediction (replace with your model)
 
         return f"Prediction: {result}"
 
